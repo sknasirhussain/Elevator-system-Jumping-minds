@@ -11,20 +11,22 @@ class ElevatorViewSet(viewsets.ModelViewSet):
     queryset = Elevator.objects.all()
     serializer_class = ElevatorSerializer
 
-    @action(detail=True, methods=['get'])
+    @action(detail=True, methods=['get', 'post'])
     def next_destination_floor(self, request, pk=None):
         elevator = self.get_object()
-        # Implement logic to determine the next destination floor for the elevator
-        # For simplicity, we assume the next floor is just the current floor + 1
+        # logic to determine the next destination floor for the elevator
+        # For simplicity, we assume the next floor is just the current floor + 1 if the requested floor is not provided by the user.
+        if request:
+            return Response({'destination_floor': request})
         next_floor = elevator.current_floor + 1
         return Response({'destination_floor': next_floor})
 
-    @action(detail=True, methods=['get'])
+    @action(detail=True, methods=['get', 'post'])
     def moving_direction(self, request, pk=None):
         elevator = self.get_object()
-        # Implement logic to check if the elevator is moving up or down
+        # logic to check if the elevator is moving up or down
         # If the elevator's direction is 'stopped', consider it as not moving
-        moving_direction = elevator.direction if elevator.direction != 'stopped' else None
+        moving_direction = Elevator.direction if Elevator.direction != 'stopped' else None
         return Response({'direction': moving_direction})
 
 class userRequestViewSet(viewsets.ModelViewSet):

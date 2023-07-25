@@ -1,7 +1,5 @@
 from django.db import models
 
-#we will start by creating put models first.
-
 #definig the Elevator model by giving it the properties for movement and state detection
 class Elevator(models.Model):
 
@@ -27,7 +25,7 @@ class Elevator(models.Model):
         app_label = 'elevator_app'
 
     #elevator model has feilds to check if the elevtor is available, the operational status, the floor the elevaor is on and the direction of it's movement
-    available = models.BooleanField(default=True)
+    is_available = models.BooleanField(default=True)
     operational_status = models.BooleanField(default=True)
     current_floor = models.IntegerField(choices = Floor_numbers)
     direction = models.CharField(max_length=10, choices = Directional_choices)
@@ -48,45 +46,41 @@ class Elevator(models.Model):
             self.save()
 
     def open_door(self):
-        # Implement logic to open the elevator door
-        # For example, set the 'door_status' field to 'open' and save the elevator model
+        #logic to open the elevator door
         self.door_status = 'open'
         self.save()
 
     def close_door(self):
-        # Implement logic to close the elevator door
-        # For example, set the 'door_status' field to 'closed' and save the elevator model
+        #logic to close the elevator door
         self.door_status = 'closed'
         self.save()
 
     def start_running(self):
-        # Implement logic to start the elevator's operation
-        # For example, set 'operational_status' to True and save the elevator model
+        #logic to start the elevator's operation
         self.operational_status = True
         self.save()
 
     def stop_running(self):
-        # Implement logic to stop the elevator's operation
-        # For example, set 'operational_status' to False and save the elevator model
+        #logic to stop the elevator's operation
         self.operational_status = False
         self.save()
 
     def display_status(self):
-        # Implement logic to display the current status of the elevator
+        #logic to display the current status of the elevator
         status = f"Elevator {self.pk} - Floor: {self.current_floor}, Direction: {self.direction}, Door: {self.door_status}, Operational Status: {self.operational_status}"
         print(status)
         return status
 
     def decide_direction(self, user_requests):
         # Implement logic to decide the elevator's direction based on user requests
-        # For example, if there are pending user requests, move in that direction
+        # if there are pending user requests, move in that direction
         # If no requests, stay stopped or idle until a request is made
         if not user_requests:
             self.direction = 'stopped'
             self.save()
         else:
-            # Determine the direction based on user requests and current floor
-            # For simplicity, assume the elevator moves in the same direction as the first request
+            # Determining the direction based on user requests and current floor
+            # For simplicity, we would assume the elevator moves in the same direction as the first request
             first_request = user_requests[0]
             if first_request.requested_floor > self.current_floor:
                 self.direction = 'up'
@@ -101,11 +95,12 @@ class ElevatorSystem:
         self.elevators = elevators
 
     def assign_elevator(self, requested_floor, direction):
-        # Implement logic to assign the most optimal elevator to the user request
-        # For example, find the elevator that is closest and moving in the same direction
+        # logic to assign the most optimal elevator to the user request
+        # find the elevator that is closest and moving in the same direction
         # If no elevators are available, return None
         closest_elevator = None
         min_distance = float('inf')
+    
 
         for elevator in self.elevators:
             if elevator.is_available:
@@ -153,7 +148,7 @@ class userRequest(models.Model):
         (6, "sixth foor"),
     )
     
-    #Dfining the  directional choices the user will have to call the elevator on.
+    #Defining the  directional choices the user will have to call the elevator on.
     Directional_choices = (
         ('up', 'Up'),
         ('down', 'Down'),
