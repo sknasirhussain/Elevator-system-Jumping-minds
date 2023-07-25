@@ -62,7 +62,7 @@ Elevator/
   │    ├── views.py            # API viewsets and actions
   │    └── urls.py             # URL configurations for the app
   ├── Elevator/                # Django project directory
-  ├── db.sqlite3               # SQLite database file (for development)
+  ├── db.sqlite3               # SQLite database file (automatically added)
   ├── README.md                # Project documentation (you are here)
   ├── manage.py                # Django management script
   └── requirements.txt         # List of project dependencies
@@ -110,14 +110,6 @@ To set up, deploy, and test the Elevator System API, follow these steps:
 
 7. Access the API at `http://127.0.0.1:8000/api/`.
 
-8. Use tools like cURL or Postman to test the API endpoints as documented.
-
-9. Deploy the API to a production server (e.g., AWS, Heroku) following appropriate deployment procedures.
-
-10. Implement authentication and authorization mechanisms to secure the API endpoints in a production environment.
-
-11. Perform extensive testing, including unit tests, integration tests, and stress tests, to ensure the API's reliability and performance.
-
-## Conclusion
+8. Use tools like cURL or Postman to test the API endpoints as documented (I had used postman to test the api (screenshots attached)).
 
 The Elevator System API is a robust and scalable solution for managing elevators and user requests in an elevator control system. By following the provided documentation and guidelines, you can set up, deploy, and test the API effectively, providing a seamless experience for users interacting with elevators in the system.
