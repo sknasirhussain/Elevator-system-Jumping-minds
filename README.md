@@ -110,6 +110,6 @@ To set up, deploy, and test the Elevator System API, follow these steps:
 
 7. Access the API at `http://127.0.0.1:8000/api/`.
 
-8. Use tools like cURL or Postman to test the API endpoints as documented (I had used postman to test the api (screenshots attached)).
+8. Use tools like cURL or Postman to test the API endpoints as documented.
 
 The Elevator System API is a robust and scalable solution for managing elevators and user requests in an elevator control system. By following the provided documentation and guidelines, you can set up, deploy, and test the API effectively, providing a seamless experience for users interacting with elevators in the system.
