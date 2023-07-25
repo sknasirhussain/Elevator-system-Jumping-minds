@@ -16,8 +16,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
         elevator = self.get_object()
         # logic to determine the next destination floor for the elevator
         # For simplicity, we assume the next floor is just the current floor + 1 if the requested floor is not provided by the user.
-        if request:
-            return Response({'destination_floor': request})
+        
         next_floor = elevator.current_floor + 1
         return Response({'destination_floor': next_floor})
 
